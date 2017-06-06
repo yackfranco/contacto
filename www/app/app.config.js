@@ -38,7 +38,7 @@ angular.module('contacto').config(['$routeProvider', '$httpProvider', function c
                 when('/editarContacto', {
                     controller: 'editarContactoController',
                     templateUrl: 'app/template/editarContacto.html',
-                    middleware: ['comprobarSession','validarEditar']
+                    middleware: ['comprobarSession', 'validarEditar']
 
                 }).
                 when('/logout', {
@@ -47,5 +47,6 @@ angular.module('contacto').config(['$routeProvider', '$httpProvider', function c
                     middleware: ['comprobarSession']
 
                 }).
-                otherwise('/');
+                
+        otherwise('/menuPrincipal');
     }]);

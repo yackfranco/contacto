@@ -1,7 +1,7 @@
 <?php
 
 $config = new myConfig();
-$config->setPath('C:/xampp/htdocs/Contacto/');
+$config->setPath('C:/xampp/htdocs/contacto/');
 
 $config->setDrive('pgsql');
 $config->setHost('localhost');
@@ -11,4 +11,4 @@ $config->setPassword('123');
 $config->setDbname('contacto');
 
 $config->setHash('md5');
-$config->setUrl('http://localhost/Contacto/www/');
+$config->setUrl('http://localhost/contacto/www/');

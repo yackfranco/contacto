@@ -4,7 +4,7 @@ class crudContacto extends controllerExtends {
 
     public function main(\request $request) {
         try {
-            
+
 //            print_r($request);
 //            exit();
             $this->loadTable();
@@ -49,6 +49,18 @@ class crudContacto extends controllerExtends {
                     'codigo' => (count($respuesta1) > 0) ? 200 : 500,
                     'contactos' => $respuesta1,
                     'mensaje' => 'contactoEditado'
+                );
+            }
+
+            if ($request->getParam('accion') === "eliminar") {
+//                print_r($request);
+//                exit();
+                $respuesta1 = $Consultascontacto->delete($request->getParam('id'));
+//                $respuesta1 = $Consultascontacto->select();
+                $respuesta2 = array(
+                    'codigo' => (count($respuesta1) > 0) ? 200 : 500,
+                    'contactos' => $respuesta1,
+                    'mensaje' => 'contactoEliminado'
                 );
             }
 
