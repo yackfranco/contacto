@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="panel panel-warning col-lg-offset-3 col-lg-6" style="margin-top: 10%">
+        <div class="panel-heading Titulo">LOGIN</div>
+        <div class="panel-body">
+            <form ng-submit="entrar()" >
+                <div class="form-group">
+                    <input type="text" class="form-control" id="usuario" ng-model="datos.usuario" placeholder="Usuario" name="Usuario" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="contraseña" ng-model="datos.contrasena" placeholder="Contraseña" name="Contraseña" required>
+                </div>
+                <div class="alert alert-danger" style="margin-top: 40px;" ng-show="usuarioErroneo">
+                    Usuario inválido
+                </div>
+                <button type="submit" class="btn btn-warning btn-block btn-lg">Entrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+

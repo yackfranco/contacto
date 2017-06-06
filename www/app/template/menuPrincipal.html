@@ -1,0 +1,33 @@
+<div class='container-fluid'>
+    <div class="row" ng-include=" 'app/template/partial/encabezado.html'"></div>
+
+    <div class="row alert alert-success alert-dismissible" ng-show="alerta">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+       {{mensajeAlerta}}
+    </div>
+
+    <div class='' style='height: 90vh;'>
+        <table class='table table-striped' style="text-align: center">
+            <tr style='font-weight: bold; font-size: 30px;'>
+                <td>Foto</td>
+                <td>Nombre</td>
+                <td>Apellidos</td>
+                <td>Telefono</td>
+                <td>Correo</td>
+                <td>Acciones</td>
+            </tr>
+            <tr style="font-size: 20px;" ng-repeat="x in tContacto">
+                <td>{{x.foto}}<img src="img/homero.jpg" class="img-circle" style='width: 40px;'></td>
+                <td>{{x.nombre}}</td>
+                <td>{{x.apellido}}</td>
+                <td>{{x.celular}}</td>
+                <td>{{x.correo}}</td>
+                <td style='text-align: center'>
+                    <i class='glyphicon glyphicon-pencil' ng-click="editar(x)"></i>
+                    <i class='glyphicon glyphicon-trash'></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
