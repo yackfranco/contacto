@@ -54,13 +54,26 @@ class dataSource {
   protected function query(string $sql, array $params = null): array {
     try {
       $stmt = $this->getConection()->prepare($sql);
+
       $stmt->execute($params);
+      
       return $stmt->fetchAll();
     } catch (PDOException $exc) {
       throw new Exception($exc->getMessage(), $exc->getCode(), $exc->getPrevious());
     }
   }
 
+   protected function query2(string $sql, string $cadena): array {
+    try {
+      $stmt = $this->getConection()->prepare($sql);
+      
+      $stmt->execute(array($cadena));
+      
+      return $stmt->fetchAll();
+    } catch (PDOException $exc) {
+      throw new Exception($exc->getMessage(), $exc->getCode(), $exc->getPrevious());
+    }
+  }
   /**
    * Ejecuta sentencias SQL tipo INSERT, UPDATE y DELETE
    * @param string $sql

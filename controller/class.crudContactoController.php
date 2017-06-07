@@ -4,7 +4,6 @@ class crudContacto extends controllerExtends {
 
     public function main(\request $request) {
         try {
-
 //            print_r($request);
 //            exit();
             $this->loadTable();
@@ -63,6 +62,18 @@ class crudContacto extends controllerExtends {
                     'mensaje' => 'contactoEliminado'
                 );
             }
+
+            if ($request->getParam('accion') === "buscar") {
+                $respuesta1 = $Consultascontacto->search($request->getParam('texto'));
+                $respuesta2 = array(
+                    'codigo' => (count($respuesta1) > 0) ? 200 : 500,
+                    'contactos' => $respuesta1,
+                    'mensaje' => 'contactoBuscado'
+                );
+//                print_r($request);
+//                exit();
+            }
+
 
             $this->setParam('rsp', $respuesta2);
             $this->setView('imprimirJson');

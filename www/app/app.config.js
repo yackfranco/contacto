@@ -6,6 +6,9 @@ angular.module('contacto').config(['$middlewareProvider',
                 }],
             'validarEditar': ['$localStorage', '$sessionStorage', function validarEditar($localStorage, $sessionStorage) {
                     middlewarevalidarEditar(this, $sessionStorage);
+                }],
+            'validarBuscar': ['$localStorage', '$sessionStorage', function validarBuscar($localStorage, $sessionStorage) {
+                    middlewarevalidarBuscar(this, $sessionStorage);
                 }]
         });
     }]);
@@ -32,7 +35,7 @@ angular.module('contacto').config(['$routeProvider', '$httpProvider', function c
                 when('/busqueda', {
                     controller: 'busquedaController',
                     templateUrl: 'app/template/busqueda.html',
-                    middleware: ['comprobarSession']
+                    middleware: ['comprobarSession','validarBuscar']
 
                 }).
                 when('/editarContacto', {

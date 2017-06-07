@@ -1,63 +1,77 @@
 <div class='container-fluid'>
-    <div class="col-lg-12" ng-include=" 'app/template/partial/encabezado.html'"></div>
+    <!--<div class="col-lg-12" ng-include=" 'app/template/partial/encabezado.html'"></div>-->
+    <nav class="navbar navbar-default row">
+        <div class="container-fluid">
+            <div class="navbar-header col-lg-6" style='font-size: 45px'>
+                <label>Agenda Telefonica</label>
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-offset-2 col-lg-10">
+                 <form class="navbar-form navbar-left" ng-submit="buscar()" role="search">
+                        <div class="form-group">
+                            <input ng-model="bus.texto" type="text" class="form-control" placeholder="Search" style="width: 450px; margin-top: 10px;" required>
+
+                            <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+                            <!--<a ng-click="buscar()" class='btn btn-default glyphicon glyphicon-search'></a>-->
+                            <!--<button class="btn btn-default glyphicon glyphicon-search"  ng-model="buscar()"></button>-->
+                            <a href='#!/registroContacto' class='btn btn-default'>Agregar</a>
+                            <a href='#!/logout' class='btn btn-default'>Logout</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <div class="panel panel-body" style="height: 80vh;">
         <div class="row" style="margin-left: 5px; font-size: 25px;">
-            <label>Busqueda de: Julian</label>
+            <label>Busqueda de: {{buscando}}</label>
         </div>
 
-        <div class="container">
-            
+        <!--<div class="container">-->
+
             <!--<div class="panel panel-default col-lg-6" style="width: 400px;">-->
-            <div class="panel panel-default col-lg-6">
+            <div class="panel panel-default col-lg-6"  ng-repeat="x in cargarDatos">
                 <div class="panel-body">
-                    <div class="col-lg-4">
-                        <img src="img/homero.jpg" class="img-circle" style='width: 100%;'>
+                    <div class="col-lg-3">
+                        <img src="img/homero.jpg" class="img-circle" style='width: 80%; border:#000 2px solid'>
                     </div>
-                    <div class="col-lg-8" style="font-size: 20px;">
-                        <label>Jesus Andres Gonzalez A</label>
+                    <div class="col-lg-9" style="font-size: 20px;">
+                        <label>{{x.nombre}} {{x.apellido}}</label>
                         <br>
-                        <label>Telefono : 3147284067</label>
+                        <label>Telefono : {{x.celular}}</label>
                         <br>
-                        <label>Correo : jesusandres98misena.edu.co</label>
+                        <label>Correo : {{x.correo}}</label>
                     </div>
-
+                    <div class="row" style="text-align: right">
+                        <i class="btn btn-default" ng-click="editarRegistro(x)">Modificar</i>
+                        <i class="btn btn-default" data-toggle="modal" data-target="#modalEliminar" ng-click="eliminar(x)">Eliminar</i>
+                    </div>
                 </div>
             </div>
-            
-            <div class="panel panel-default col-lg-6">
-                <div class="panel-body">
-                    <div class="col-lg-4">
-                        <img src="img/homero.jpg" class="img-circle" style='width: 100%;'>
-                    </div>
-                    <div class="col-lg-8">
-                        <label>Jesus Andres Gonzalez A</label>
-                        <br>
-                        <label>Telefono : 3147284067</label>
-                        <br>
-                        <label>Correo : jesusandres98misena.edu.co</label>
-                    </div>
-
-                </div>
-            </div>
-            
-            <div class="panel panel-default col-lg-6">
-                <div class="panel-body">
-                    <div class="col-lg-4">
-                        <img src="img/homero.jpg" class="img-circle" style='width: 100%;'>
-                    </div>
-                    <div class="col-lg-8">
-                        <label>Jesus Andres Gonzalez A</label>
-                        <br>
-                        <label>Telefono : 3147284067</label>
-                        <br>
-                        <label>Correo : jesusandres98misena.edu.co</label>
-                    </div>
-
-                </div>
-            </div>
-            
-        </div>
+        <!--</div>-->
     </div>
-
 </div>
+
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog"  id="modalEliminar"  >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Eliminar Registro</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>Estas seguro que desea borrar el contacto {{mod.nombre + " " + mod.apellido}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-warning" ng-click="confirmarEliminar()">Eliminar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

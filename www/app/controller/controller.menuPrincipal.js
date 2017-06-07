@@ -1,4 +1,5 @@
 angular.module('contacto').controller('menuPrincipalController', ['$scope', '$sessionStorage', '$location', 'crudContactoService', function ($scope, $sessionStorage, $location, crudContactoService) {
+        delete $sessionStorage.textoBuscar;
         $scope.contacto = {};
         $scope.tContacto = {};
         $scope.alerta = false;
@@ -19,6 +20,7 @@ angular.module('contacto').controller('menuPrincipalController', ['$scope', '$se
 //            console.log(x);
             $sessionStorage.datosContacto = x;
             $location.path("/editarContacto");
+
         }
 
         function cargarTabla() {
@@ -44,12 +46,18 @@ angular.module('contacto').controller('menuPrincipalController', ['$scope', '$se
         $scope.confirmarEliminar = function () {
             crudContactoService.crud($scope.mod).then(function successCallback(respuesta) {
                 cargarTabla();
+                $('#modalEliminar').modal('hide');
             }, function errorCallback(respuesta) {
 
             })
-            console.log($scope.mod);
+//            console.log($scope.mod);
 
 
         }
-        ;
+
+        $scope.buscar = function () {
+            $sessionStorage.textoBuscar = $scope.bus;
+            console.log($scope.bus);
+            $location.path("/busqueda");
+        }
     }]);
